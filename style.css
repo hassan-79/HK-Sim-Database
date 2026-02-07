@@ -1,0 +1,447 @@
+:root {
+    --primary-color: #0f0; /* Neon Green */
+    --secondary-color: #00ff00;
+    --accent-color: #ff003c; /* Cyberpunk Red */
+    --background-color: #050505; /* Deep Black */
+    --card-bg: #0a0a0a;
+    --text-color: #e0e0e0;
+    --glow-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
+    --border-color: #1a1a1a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace; /* Monospace for hacker vibe */
+}
+
+body {
+    background-color: var(--background-color);
+    background-image: 
+        linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 30px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    animation: scanline 2s linear infinite;
+}
+
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+header p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.credit {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+input[type="text"], input[type="password"] {
+    flex: 1;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #000;
+    color: var(--primary-color);
+    border: 1px solid #333;
+    border-radius: 2px;
+    outline: none;
+    transition: all 0.3s;
+    min-width: 200px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+button {
+    padding: 15px 30px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+}
+
+button:disabled {
+    border-color: #555;
+    color: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+button:disabled:hover {
+    background-color: transparent;
+    color: #555;
+}
+
+/* Loading Spinner */
+#loading {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.spinner {
+    border: 3px solid rgba(0, 255, 0, 0.1);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Results */
+.result-card {
+    background: #0d0d0d;
+    border: 1px solid #333;
+    border-left: 3px solid var(--primary-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.1);
+}
+
+.result-row {
+    display: flex;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 8px;
+}
+
+.result-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.label {
+    font-weight: bold;
+    width: 140px;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.popup-box {
+    background-color: #0a0a0a;
+    padding: 40px;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.3);
+    animation: popupSlide 0.5s ease-out;
+}
+
+@keyframes popupSlide {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-box h2 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.popup-box p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.popup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Compact Social Buttons */
+.popup-buttons.compact {
+    flex-direction: row;
+    gap: 10px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 1rem;
+    flex: 1; /* Equal width */
+}
+
+.social-btn i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.social-btn.whatsapp {
+    background-color: #25D366;
+    border: 1px solid #25D366;
+}
+
+.social-btn.telegram {
+    background-color: #0088cc;
+    border: 1px solid #0088cc;
+}
+
+.social-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Pin Code Section */
+.pin-section {
+    margin-bottom: 25px;
+}
+
+.or-divider {
+    color: #666;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.otp-container {
+    margin-bottom: 15px;
+}
+
+.request-otp-btn {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    width: auto;
+    display: inline-block;
+}
+
+.request-otp-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
+}
+
+.otp-msg {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+#pinInput {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    letter-spacing: 5px;
+    border-color: #444;
+}
+
+#pinInput:focus {
+    border-color: var(--primary-color);
+}
+
+.unlock-btn {
+    width: 100%;
+    background-color: #333;
+    border-color: #333;
+    color: #666;
+}
+
+.unlock-btn.active {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.unlock-btn.active:hover {
+    background-color: var(--primary-color);
+    color: #000;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .result-row {
+        flex-direction: column;
+    }
+    
+    .label {
+        width: 100%;
+        margin-bottom: 2px;
+        color: #888;
+    }
+    
+    .value {
+        width: 100%;
+        padding-left: 10px;
+        border-left: 1px solid #333;
+    }
+
+    /* Popup Mobile Adjustments */
+    .popup-content {
+        padding: 20px;
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .popup-buttons.compact {
+        flex-direction: column;
+    }
+
+    .social-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .pin-section {
+        width: 100%;
+    }
+    
+    #pinInput {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HK Sim Database</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-sim-card"></i> HK Sim Database</h1>
+            <p class="credit">Made by Hassan Khan</p>
+            <p>Enter number to search SIM details</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="phoneInput" placeholder="Enter Mobile Number (e.g 3xxxxxxxxx)" disabled>
+            <button id="searchBtn" disabled><i class="fas fa-search"></i> Search</button>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Searching...</p>
+        </div>
+
+        <div id="error" class="hidden"></div>
+
+        <div id="resultContainer" class="hidden">
+            <!-- Results will be injected here -->
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-box">
+            <h2><i class="fas fa-lock"></i> Locked</h2>
+            <p>Please join our channels to unlock the database.</p>
+            <div class="popup-buttons compact">
+                <a href="https://whatsapp.com/channel/0029VbCbFU89Gv7VdJLDay0o" target="_blank" id="whatsappBtn" class="social-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> Join WhatsApp
+                </a>
+                <a href="#" target="_blank" id="telegramBtn" class="social-btn telegram">
+                    <i class="fab fa-telegram-plane"></i> Join Telegram
+                </a>
+            </div>
+
+            <!-- Pin Code Section -->
+            <div class="pin-section">
+                <p class="or-divider">- OR -</p>
+                <div class="otp-container">
+                    <button id="requestOtpBtn" class="request-otp-btn">Request Access Code</button>
+                    <p id="otpMsg" class="otp-msg hidden"></p>
+                </div>
+                <input type="password" id="pinInput" placeholder="Enter Access Code" maxlength="6">
+            </div>
+
+            <button id="unlockBtn" class="unlock-btn" disabled>Continue to Database</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
