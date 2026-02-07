@@ -1,1 +1,0 @@
-mongodb+srv://Hassan-Khan:P4pri9t9@hk-sim.k1pthex.mongodb.net/?appName=HK-Sim
