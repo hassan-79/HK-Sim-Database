@@ -7,7 +7,7 @@ const SimData = require('./models/SimData');
 const Otp = require('./models/Otp');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(cors());
